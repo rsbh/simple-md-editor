@@ -29,8 +29,15 @@ wails doctor
 wails dev
 ```
 
-This installs frontend dependencies, generates the Go bindings into
+This installs frontend dependencies, regenerates the Go bindings in
 `frontend/wailsjs`, and opens the app with hot reload.
+
+Those bindings are committed so the frontend type-checks on a fresh clone. They
+are generated from the methods on `App`, so after changing one of those, run:
+
+```bash
+wails generate module
+```
 
 ## Building
 
@@ -50,7 +57,7 @@ cd frontend && npm install && npm run dev
 ```
 
 Anything that touches the filesystem is unavailable there, since that lives on
-the Go side.
+the Go side; those commands report as much instead of failing silently.
 
 ## Layout
 
