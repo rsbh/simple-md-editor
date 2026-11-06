@@ -4,9 +4,6 @@ node_modules
 # Built by the Wails CLI before the Go embed; never committed.
 frontend/dist
 
-# Generated bindings, written by the Wails CLI on dev/build.
-frontend/wailsjs
-
 # Binary left behind by `go build` in the repo root.
 /simple-md-editor
 
