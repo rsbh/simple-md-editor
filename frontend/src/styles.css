@@ -1,0 +1,64 @@
+:root {
+  --bg: #fcfcfb;
+  --fg: #22221f;
+  --muted: #a8a8a1;
+  --caret: #22221f;
+  --selection: rgba(34, 34, 31, 0.12);
+  --strip: transparent;
+  --font-prose: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17171a;
+    --fg: #e5e5e0;
+    --muted: #68685f;
+    --caret: #e5e5e0;
+    --selection: rgba(229, 229, 224, 0.16);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Wails reads this custom property to decide what drags the window. */
+.drag-strip {
+  --wails-draggable: drag;
+  flex: 0 0 34px;
+  background: var(--strip);
+}
+
+.editor-host {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.cm-editor {
+  height: 100%;
+}
+
+.cm-placeholder {
+  color: var(--muted);
+}

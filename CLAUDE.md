@@ -33,6 +33,8 @@ A minimal, distraction-free markdown editor. Desktop app: Wails (Go) + React.
 - **macOS only for now.** Do not add Windows or Linux window handling until asked.
 - **Fully frameless window** — no native title bar and no window controls. The tab strip
   doubles as the drag region.
+- **Toolchain.** Go 1.27, pinned in `go.mod`; Node 26 LTS, pinned in
+  `frontend/.nvmrc`. Both are expected to track current releases.
 - **The workspace restores on launch.** Open tabs, pane layout and caret positions are
   persisted to the OS config directory.
 
