@@ -48,6 +48,10 @@ type App struct {
 	ctx context.Context
 
 	recentMu sync.Mutex
+
+	// configDir overrides where the recent list is kept. Empty means the
+	// user's own config directory; tests point it somewhere disposable.
+	configDir string
 }
 
 func NewApp() *App {

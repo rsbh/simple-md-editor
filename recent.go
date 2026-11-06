@@ -67,7 +67,7 @@ func (a *App) rememberRecent(path string) {
 }
 
 func (a *App) readRecent() ([]string, error) {
-	path, err := recentPath()
+	path, err := a.recentPath()
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (a *App) readRecent() ([]string, error) {
 }
 
 func (a *App) writeRecent(paths []string) error {
-	path, err := recentPath()
+	path, err := a.recentPath()
 	if err != nil {
 		return err
 	}
@@ -101,10 +101,14 @@ func (a *App) writeRecent(paths []string) error {
 	return os.WriteFile(path, data, 0o644)
 }
 
-func recentPath() (string, error) {
-	dir, err := os.UserConfigDir()
-	if err != nil {
-		return "", err
+func (a *App) recentPath() (string, error) {
+	dir := a.configDir
+	if dir == "" {
+		var err error
+		dir, err = os.UserConfigDir()
+		if err != nil {
+			return "", err
+		}
 	}
 	return filepath.Join(dir, configDirName, recentFileName), nil
 }

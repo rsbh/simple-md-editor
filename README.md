@@ -59,6 +59,17 @@ cd frontend && npm install && npm run dev
 Anything that touches the filesystem is unavailable there, since that lives on
 the Go side; those commands report as much instead of failing silently.
 
+## Testing
+
+Behaviour on the Go side is specified in `features/` and run by godog:
+
+```bash
+go test ./...
+```
+
+Scenarios are the specification, so a change to how files are read, written or
+remembered starts by editing a feature file.
+
 ## Layout
 
 | Path                 | Contents                                           |

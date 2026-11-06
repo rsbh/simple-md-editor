@@ -38,6 +38,20 @@ A minimal, distraction-free markdown editor. Desktop app: Wails (Go) + React.
 - **The workspace restores on launch.** Open tabs, pane layout and caret positions are
   persisted to the OS config directory.
 
+## Testing
+
+- **Work test first.** Write or extend a scenario, watch it fail for the right reason,
+  then make it pass. Do not add behaviour that no scenario describes.
+- Go behaviour is specified as Gherkin in `features/` and run by godog through
+  `go test ./...`. Step definitions live in `features_test.go`.
+- Feature files describe behaviour in the product's own language. Byte-level and
+  encoding detail belongs in the step definitions, not in the feature — Gherkin
+  rewrites escape sequences inside `Examples` tables.
+- Register steps with `sc.Step`, never `sc.Given`/`sc.When`/`sc.Then`: godog scopes
+  those by keyword, so a step reached by a different keyword reads as undefined.
+- A scenario must never touch the developer's real config directory. `newTestApp`
+  points it at a temporary one.
+
 ## Conventions
 
 - **Never name other editors or note-taking apps in anything committed to this repo** —
