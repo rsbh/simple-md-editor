@@ -1,0 +1,37 @@
+# simple-md-editor
+
+A minimal, distraction-free markdown editor. Desktop app: Wails (Go) + React.
+
+## Product shape
+
+- **Zen surface.** Borderless window, one centred text column, no toolbar, no sidebar,
+  no status bar. Opening the app puts the caret in a document.
+- **Live formatting.** The editor renders markdown as you type — `# ` becomes a heading,
+  `**x**` becomes bold. Syntax markers are hidden by default and revealed contextually
+  when the caret enters the span they belong to. There is no separate preview mode;
+  the editor is the preview.
+- **Tabs and panes.** A tab is backed by one file. A tab holds either a single pane or a
+  vertical split of two panes, so two documents can sit side by side. A thin tab strip at
+  the top is the only persistent chrome; click a tab to switch.
+- **Cmd+K is the only UI.** Every command — new, open, save, split, close pane, switch
+  tab, focus mode, typewriter scroll, theme — lives in the Cmd+K palette. Do not add
+  menus, toolbars, context menus or extra global shortcuts without being asked.
+
+## Architecture
+
+- **Go side owns the filesystem.** Open/save dialogs, reading and writing files, the
+  recent-files list, file watching. Nothing touches disk from the frontend.
+- **React side owns editing.** CodeMirror 6 with a decoration layer for the live
+  formatting and contextual syntax reveal.
+- **The file on disk is the source of truth.** The editor holds markdown text, never a
+  parsed document tree that is re-serialised on save. Saving a file that was opened and
+  not edited must produce a byte-identical file.
+
+## Conventions
+
+- **Never name other editors or note-taking apps in anything committed to this repo** —
+  commit messages, PR titles and bodies, code comments, documentation, identifiers, UI
+  copy. Describe behaviour by what it does ("contextual syntax reveal", "focus mode",
+  "typewriter scroll"), not by which product does it. Such comparisons belong in
+  conversation only.
+- Keep the dependency surface small. This is a notepad, not a platform.
