@@ -27,6 +27,15 @@ A minimal, distraction-free markdown editor. Desktop app: Wails (Go) + React.
   parsed document tree that is re-serialised on save. Saving a file that was opened and
   not edited must produce a byte-identical file.
 
+## Platform and runtime
+
+- **Wails v2.** Stay on the stable line; do not move to v3 while it is in alpha.
+- **macOS only for now.** Do not add Windows or Linux window handling until asked.
+- **Fully frameless window** — no native title bar and no window controls. The tab strip
+  doubles as the drag region.
+- **The workspace restores on launch.** Open tabs, pane layout and caret positions are
+  persisted to the OS config directory.
+
 ## Conventions
 
 - **Never name other editors or note-taking apps in anything committed to this repo** —
